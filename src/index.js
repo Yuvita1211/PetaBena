@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux"; // Keep this import
 import "./index.css";
 import App from "./App";
-import store from "./store";
+import store from "./redux/store";
 import "leaflet/dist/leaflet.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

@@ -14,7 +14,7 @@ function Footer() {
           </Col>
         </Row>
       </Container>
-      <div className="text-center py-2 bg-secondary">
+      <div className="text-center py-2">
         <p className="mb-0">&copy; 2024 PetaBena. All rights reserved.</p>
       </div>
     </footer>

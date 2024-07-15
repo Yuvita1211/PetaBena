@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchNames } from "./redux/actions";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navigation from "./Components/Navigation";
@@ -13,6 +15,20 @@ import DisasterVictims from "./Components/DisasterVictims";
 import DisasterTotal from "./Components/DisasterTotal";
 
 function App() {
+  const dispatch = useDispatch();
+  const { names, loading, error } = useSelector((state) => state);
+
+  useEffect(() => {
+    dispatch(fetchNames()); // Menggunakan fetchNames
+  }, [dispatch]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
   return (
     <Router>
       <div>
@@ -26,16 +42,10 @@ function App() {
         </div>
         <DisasterMaps />
         <Infografis />
-        <div className="button-container">
-          <button className="center-button">
-            <Link to="/total">Lihat Data</Link>
-          </button>
-        </div>
         <Footer /> {/* Include the Footer component */}
       </div>
       <Routes>
-        <Route path="/victims" element={<DisasterVictims />} />
-        <Route path="/total" element={<DisasterTotal />} />
+        <Route path="/victims" component={<DisasterVictims />} />
       </Routes>
     </Router>
   );
